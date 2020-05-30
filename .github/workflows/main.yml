@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  current-branch-job:
+    runs-on: ubuntu-latest
+    name: Test action
+    steps:
+    - name: Use action
+      id: semver
+      uses: shelmangroup/semver-info
+    - name: Echo outputs
+      run: |
+        echo "branch=${{ steps.semver.outputs.branch }}"
+        echo "branch_alpha=${{ steps.semver.outputs.branch_alpha }}"

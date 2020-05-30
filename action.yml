@@ -1,0 +1,14 @@
+# action.yml
+name: 'Semantic Version Information'
+description: 'Version and branch information useful for semantic versioning'
+branding:
+    icon: 'git-branch'
+    color: 'black'
+outputs:
+  branch:
+    description: 'Current branch name. Base branch if in a PR.'
+  branch_alpha:
+    description: 'Branch name with only alphanumbers. Valid to use with image paths for example.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
