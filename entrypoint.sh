@@ -15,7 +15,7 @@ if [ "${BRANCH}" != "master" ]; then
   VERSION_NEXT=$(semver bump prerel ${BRANCH_ALPHA}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
 fi
 
-VERSION_NEXT=${VERSION_NEXT}+${GITHUB_RUN_NUMBER}
+VERSION_NEXT=${VERSION_NEXT}+${GITHUB_SHA}
 
 echo ${VERSION_NEXT} >VERSION
 echo "::set-output name=branch::${BRANCH}"
