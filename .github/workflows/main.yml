@@ -10,7 +10,7 @@ jobs:
 
     - name: Use action
       id: semver
-      uses: shelmangroup/semver-info@work
+      uses: shelmangroup/semver-info@test
 
     - name: Echo outputs
       run: |
