@@ -16,7 +16,6 @@ if [ "${BRANCH}" != "master" ]; then
 fi
 
 echo ${VERSION_NEXT} >VERSION
-
 echo "::set-output name=branch::${BRANCH}"
 echo "::set-output name=branch_alpha::${BRANCH_ALPHA}"
 echo "::set-output name=version::${VERSION_NEXT}"
