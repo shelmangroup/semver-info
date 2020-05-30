@@ -7,8 +7,13 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
-    - uses: avakar/derive-version@v1
-      id: derive-version
+
+    - name: Bump version
+      uses: remorses/bump-version@js
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master
+
     - name: Use action
       id: semver
       uses: shelmangroup/semver-info@work
