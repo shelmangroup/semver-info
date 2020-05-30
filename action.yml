@@ -9,8 +9,8 @@ outputs:
     description: 'Current branch name. Base branch if in a PR.'
   branch_alpha:
     description: 'Branch name with only alphanumbers. Valid to use with image paths for example.'
-  version_current:
-    description: 'Current semantic version. Read from /VERSION'
+  version:
+    description: 'Next semantic version. Based on /VERSION and branch name.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
