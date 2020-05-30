@@ -16,4 +16,4 @@ jobs:
       run: |
         echo "branch=${{ steps.semver.outputs.branch }}"
         echo "branch_alpha=${{ steps.semver.outputs.branch_alpha }}"
-        echo "VER=${{ steps.derive-version.outputs.version }}+${{ steps.semver.outputs.branch_alpha }}.${{ env.GITHUB_RUN_NUMBER }}"
+        echo "VER=${{ steps.derive-version.outputs.version }}+${{ steps.semver.outputs.branch_alpha }}.${GITHUB_RUN_NUMBER}"
