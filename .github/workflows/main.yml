@@ -8,12 +8,6 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v2
 
-    - name: Bump version
-      uses: remorses/bump-version@js
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: master
-
     - name: Use action
       id: semver
       uses: shelmangroup/semver-info@work
