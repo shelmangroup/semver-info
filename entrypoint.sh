@@ -1,4 +1,6 @@
 #!/bin/bash
+set -ex
+
 BRANCH=${GITHUB_HEAD_REF}
 if [ -z "${BRANCH}" ]; then
   BRANCH=${GITHUB_REF}
