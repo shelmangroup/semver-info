@@ -12,7 +12,7 @@ VERSION_CURRENT=$(< VERSION)
 VERSION_NEXT=$(semver bump patch ${VERSION_CURRENT})
 
 if [ "${BRANCH}" != "master" ]; then
-  VERSION_NEXT=$(semver bump prerel ${BRANCH_ALPHA} ${VERSION_NEXT})
+  VERSION_NEXT=$(semver bump prerel ${BRANCH_ALPHA}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
 fi
 
 VERSION_NEXT=${VERSION_NEXT}+${GITHUB_RUN_NUMBER}
