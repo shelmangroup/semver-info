@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Test action
     steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
     - uses: avakar/derive-version@v1
       id: derive-version
     - name: Use action
