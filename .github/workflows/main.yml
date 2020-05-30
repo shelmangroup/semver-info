@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Use action
       id: semver
-      uses: shelmangroup/semver-info
+      uses: shelmangroup/semver-info@master
     - name: Echo outputs
       run: |
         echo "branch=${{ steps.semver.outputs.branch }}"
