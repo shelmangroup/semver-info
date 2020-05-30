@@ -5,10 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Test action
     steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - uses: avakar/derive-version@v1
+      id: derive-version
     - name: Use action
       id: semver
-      uses: shelmangroup/semver-info@master
+      uses: shelmangroup/semver-info@work
+
     - name: Echo outputs
       run: |
         echo "branch=${{ steps.semver.outputs.branch }}"
         echo "branch_alpha=${{ steps.semver.outputs.branch_alpha }}"
+        echo "VER=${{ steps.derive-version.outputs.version }}+${{ steps.semver.outputs.branch_alpha }}.${GITHUB_RUN_NUMBER}"
