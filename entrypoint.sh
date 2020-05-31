@@ -1,5 +1,5 @@
 #!/bin/bash
-set -exo pipefail
+set -ex -o pipefail
 
 AUTO_RELEASE="yes"
 if [ -n "${RELEASE_BRANCH}" ]; then
