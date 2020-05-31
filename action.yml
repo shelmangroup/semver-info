@@ -12,6 +12,9 @@ inputs:
   github_pr_head_sha:
     default: ${{ github.pull_request.head.sha }}
     required: false
+  github_pr_number:
+    default: ${{ github.pull_request.number }}
+    required: false
 outputs:
   branch:
     description: 'Current branch name. Base branch if in a PR.'
