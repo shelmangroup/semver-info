@@ -22,7 +22,7 @@ env | sort
 if [ "${BRANCH}" != "${RELEASE_BRANCH}" ]; then
   PR_NUMBER=$(echo "$GITHUB_REF" | awk -F / '{print $3}')
   VERSION_NEXT=$(semver bump prerel pr.${PR_NUMBER}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
-  VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${GITHUB_SHA:0:8}
+  VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${GITHUB_COMMIT_SHA:0:8}
 fi
 
 echo ${VERSION_NEXT} >VERSION
