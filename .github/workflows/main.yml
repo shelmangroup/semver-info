@@ -1,4 +1,8 @@
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+    - master
 
 jobs:
   current-branch-job:
@@ -12,7 +16,7 @@ jobs:
       id: semver
       uses: shelmangroup/semver-info@test
       with:
-        tag_on_push: true
+        auto_release_branch: master
 
     - name: Echo outputs
       run: |

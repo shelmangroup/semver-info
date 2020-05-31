@@ -5,8 +5,8 @@ branding:
     icon: 'git-branch'
     color: 'black'
 inputs:
-  tag_on_push:
-    description: "If set, create tag for version on push evens."
+  auto_release_branch:
+    description: "Auto-commit VERSION file and create tag on push events to this branch."
     default: ""
     required: false
 outputs:

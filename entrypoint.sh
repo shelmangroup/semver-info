@@ -1,5 +1,14 @@
 #!/bin/bash
-set -ex
+set -exo pipefail
+
+RELEASE_BRANCH=$1
+shift
+
+AUTO_RELEASE="yes"
+if [ -n "${RELEASE_BRANCH}" ]; then
+  RELEASE_BRANCH="master"
+  AUTO_RELEASE="no"
+fi
 
 BRANCH=${GITHUB_HEAD_REF}
 if [ -z "${BRANCH}" ]; then
@@ -13,13 +22,17 @@ VERSION_NEXT=$(semver bump patch ${VERSION_CURRENT})
 
 env | sort
 
-if [ "${BRANCH}" != "master" ]; then
+if [ "${BRANCH}" != "${RELEASE_BRANCH}" ]; then
   PR_NUMBER=$(echo "$GITHUB_REF" | awk -F / '{print $3}')
   VERSION_NEXT=$(semver bump prerel pr.${PR_NUMBER}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
   VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${GITHUB_SHA:0:8}
 fi
 
 echo ${VERSION_NEXT} >VERSION
+
+if [ "${AUTO_RELEASE}" == "yes" && "${GITHUB_EVENT_NAME}" == "push" && "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
+  echo "RELEASE ME"
+fi
 
 echo "::set-output name=branch::${BRANCH}"
 echo "::set-output name=branch_alpha::${BRANCH_ALPHA}"
