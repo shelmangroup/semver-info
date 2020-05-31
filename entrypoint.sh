@@ -12,8 +12,9 @@ VERSION_CURRENT=$(< VERSION)
 VERSION_NEXT=$(semver bump patch ${VERSION_CURRENT})
 
 if [ "${BRANCH}" != "master" ]; then
-  VERSION_NEXT=$(semver bump prerel ${BRANCH_ALPHA}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
-  VERSION_NEXT=${VERSION_NEXT}+${GITHUB_SHA:0:8}
+  PR_NUMBER::$(echo "$GITHUB_REF" | awk -F / '{print $3}')
+  VERSION_NEXT=$(semver bump prerel pr.${PR_NUMBER}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
+  VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${GITHUB_SHA:0:8}
 fi
 
 echo ${VERSION_NEXT} >VERSION
