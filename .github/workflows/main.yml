@@ -14,7 +14,7 @@ jobs:
 
     - name: Use action
       id: semver
-      uses: shelmangroup/semver-info@test
+      uses: shelmangroup/semver-info@master
       with:
         auto_release_branch: master
 
