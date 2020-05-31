@@ -4,11 +4,20 @@ description: 'Version and branch information useful for semantic versioning'
 branding:
     icon: 'git-branch'
     color: 'black'
+inputs:
+  auto_release_branch:
+    description: "Auto-commit VERSION file and create tag on push events to this branch."
+    default: ""
+    required: false
 outputs:
   branch:
     description: 'Current branch name. Base branch if in a PR.'
   branch_alpha:
     description: 'Branch name with only alphanumbers. Valid to use with image paths for example.'
+  version:
+    description: 'Next semantic version. Based on /VERSION and branch name.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    RELEASE_BRANCH: ${{ inputs.auto_release_branch }}
