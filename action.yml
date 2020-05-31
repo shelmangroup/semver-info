@@ -9,8 +9,8 @@ inputs:
     description: "Auto-commit VERSION file and create tag on push events to this branch."
     default: ""
     required: false
-  github_event_after:
-    default: ${{ github.event.after }}
+  github_pr_head_sha:
+    default: ${{ github.pull_request.head.sha }}
     required: false
 outputs:
   branch:
