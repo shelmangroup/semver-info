@@ -30,10 +30,11 @@ echo ${VERSION_NEXT} >VERSION
 
 if [ "${AUTO_RELEASE}" == "yes" ] && [ "${GITHUB_EVENT_NAME}" == "push" ] && [ "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
   echo "RELEASE ME"
+  git config user.name "github-actions"
+  git config user.email "github-actions@example.com"
   git checkout "${BRANCH}"
   git add VERSION
-  git -c user.name="github-actions" -c user.email="github-actions@example.com" \
-        commit -m "Version bump to ${VERSION_NEXT}"
+  git commit -m "Version bump to ${VERSION_NEXT}"
   git pull --no-edit --commit --strategy-option theirs origin ${BRANCH}
   git push origin ${BRANCH}
 fi
