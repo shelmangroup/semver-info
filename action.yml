@@ -9,7 +9,7 @@ inputs:
     description: "Auto-commit VERSION file and create tag on push events to this branch."
     default: ""
     required: false
-  _commit_sha:
+  github_event_after:
     default: ${{ github.event.after }}
     required: false
 outputs:
@@ -22,8 +22,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ github.event.after }}
   env:
     GITHUB_COMMIT_SHA: ${{ inputs._commit_sha }}
     RELEASE_BRANCH: ${{ inputs.auto_release_branch }}
