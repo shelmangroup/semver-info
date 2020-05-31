@@ -4,6 +4,11 @@ description: 'Version and branch information useful for semantic versioning'
 branding:
     icon: 'git-branch'
     color: 'black'
+inputs:
+  tag_on_push:
+    description: "If set, create tag for version on push evens."
+    default: ""
+    required: false
 outputs:
   branch:
     description: 'Current branch name. Base branch if in a PR.'

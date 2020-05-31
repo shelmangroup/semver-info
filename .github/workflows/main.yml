@@ -11,6 +11,8 @@ jobs:
     - name: Use action
       id: semver
       uses: shelmangroup/semver-info@test
+      with:
+        tag_on_push: true
 
     - name: Echo outputs
       run: |
