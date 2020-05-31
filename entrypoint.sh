@@ -1,9 +1,6 @@
 #!/bin/bash
 set -exo pipefail
 
-RELEASE_BRANCH=$1
-shift
-
 AUTO_RELEASE="yes"
 if [ -n "${RELEASE_BRANCH}" ]; then
   RELEASE_BRANCH="master"

@@ -19,3 +19,5 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    RELEASE_BRANCH: ${{ inputs.auto_release_branch }}
