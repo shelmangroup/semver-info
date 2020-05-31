@@ -29,6 +29,11 @@ echo ${VERSION_NEXT} >VERSION
 
 if [ "${AUTO_RELEASE}" == "yes" ] && [ "${GITHUB_EVENT_NAME}" == "push" ] && [ "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
   echo "RELEASE ME"
+  git add VERSION
+  git -c user.name="github-actions" -c user.email="github-actions@example.com" \
+        commit -m "Version bump to ${VERSION_NEXT}" \
+        --author="GitHub Actions"
+  git push origin
 fi
 
 echo "::set-output name=branch::${BRANCH}"
