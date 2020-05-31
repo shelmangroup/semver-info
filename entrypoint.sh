@@ -11,6 +11,8 @@ BRANCH_ALPHA=$(echo ${BRANCH} | sed -e "s/[^a-z0-9]/-/g")
 VERSION_CURRENT=$(< VERSION)
 VERSION_NEXT=$(semver bump patch ${VERSION_CURRENT})
 
+env | sort
+
 if [ "${BRANCH}" != "master" ]; then
   PR_NUMBER=$(echo "$GITHUB_REF" | awk -F / '{print $3}')
   VERSION_NEXT=$(semver bump prerel pr.${PR_NUMBER}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
