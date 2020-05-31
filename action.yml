@@ -22,6 +22,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    GITHUB_COMMIT_SHA: ${{ inputs._commit_sha }}
-    RELEASE_BRANCH: ${{ inputs.auto_release_branch }}
