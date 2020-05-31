@@ -2,7 +2,7 @@
 set -ex -o pipefail
 
 AUTO_RELEASE="yes"
-if [ -n "${RELEASE_BRANCH}" ]; then
+if [ -z "${RELEASE_BRANCH}" ]; then
   RELEASE_BRANCH="master"
   AUTO_RELEASE="no"
 fi
