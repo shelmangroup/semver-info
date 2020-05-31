@@ -1,4 +1,8 @@
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+    - master
 
 jobs:
   current-branch-job:
@@ -7,14 +11,16 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
-    - uses: avakar/derive-version@v1
-      id: derive-version
+
     - name: Use action
       id: semver
-      uses: shelmangroup/semver-info@work
+      uses: shelmangroup/semver-info@test
+      with:
+        auto_release_branch: master
 
     - name: Echo outputs
       run: |
         echo "branch=${{ steps.semver.outputs.branch }}"
         echo "branch_alpha=${{ steps.semver.outputs.branch_alpha }}"
+        echo "version=${{ steps.semver.outputs.version }}"
         echo "VER=${{ steps.derive-version.outputs.version }}+${{ steps.semver.outputs.branch_alpha }}.${GITHUB_RUN_NUMBER}"
