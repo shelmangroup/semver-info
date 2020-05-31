@@ -27,7 +27,7 @@ fi
 
 echo ${VERSION_NEXT} >VERSION
 
-if [ "${AUTO_RELEASE}" == "yes" && "${GITHUB_EVENT_NAME}" == "push" && "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
+if [ "${AUTO_RELEASE}" == "yes" ] && [ "${GITHUB_EVENT_NAME}" == "push" ] && [ "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
   echo "RELEASE ME"
 fi
 
