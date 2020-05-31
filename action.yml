@@ -10,7 +10,7 @@ inputs:
     default: ""
     required: false
   _commit_sha:
-    default: ${{ github.sha }}
+    default: ${{ github.event.pull_request.head.repo.sha }}
     required: false
 outputs:
   branch:
