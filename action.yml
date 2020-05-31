@@ -26,5 +26,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    GITHUB_PR_HEAD_SHA: ${{ input.github_pr_head_sha }}
-    GITHUB_PR_NUMBER: ${{ input.github_pr_number }}
+    GITHUB_PR_HEAD_SHA: ${{ inputs.github_pr_head_sha }}
+    GITHUB_PR_NUMBER: ${{ inputs.github_pr_number }}
