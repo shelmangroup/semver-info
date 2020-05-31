@@ -22,7 +22,8 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ github.event.after }}
   env:
     GITHUB_COMMIT_SHA: ${{ inputs._commit_sha }}
     RELEASE_BRANCH: ${{ inputs.auto_release_branch }}
-    GITHUB_EVENT_AFTER: ${{ github.event.after }}
