@@ -9,6 +9,12 @@ inputs:
     description: "Auto-commit VERSION file and create tag on push events to this branch."
     default: ""
     required: false
+  github_pr_head_sha:
+    default: ${{ github.event.pull_request.head.sha }}
+    required: false
+  github_pr_number:
+    default: ${{ github.event.pull_request.number }}
+    required: false
 outputs:
   branch:
     description: 'Current branch name. Base branch if in a PR.'
@@ -19,5 +25,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    RELEASE_BRANCH: ${{ inputs.auto_release_branch }}

@@ -1,8 +1,9 @@
 #!/bin/bash
-set -exo pipefail
+set -ex -o pipefail
 
+RELEASE_BRANCH="${INPUT_AUTO_RELEASE_BRANCH}"
 AUTO_RELEASE="yes"
-if [ -n "${RELEASE_BRANCH}" ]; then
+if [ -z "${RELEASE_BRANCH}" ]; then
   RELEASE_BRANCH="master"
   AUTO_RELEASE="no"
 fi
@@ -22,13 +23,20 @@ env | sort
 if [ "${BRANCH}" != "${RELEASE_BRANCH}" ]; then
   PR_NUMBER=$(echo "$GITHUB_REF" | awk -F / '{print $3}')
   VERSION_NEXT=$(semver bump prerel pr.${PR_NUMBER}.${GITHUB_RUN_NUMBER} ${VERSION_NEXT})
-  VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${GITHUB_SHA:0:8}
+  VERSION_NEXT=${VERSION_NEXT}+${BRANCH_ALPHA}.${INPUT_GITHUB_PR_HEAD_SHA:0:8}
 fi
 
 echo ${VERSION_NEXT} >VERSION
 
-if [ "${AUTO_RELEASE}" == "yes" && "${GITHUB_EVENT_NAME}" == "push" && "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
+if [ "${AUTO_RELEASE}" == "yes" ] && [ "${GITHUB_EVENT_NAME}" == "push" ] && [ "${BRANCH}" == "${RELEASE_BRANCH}" ]; then
   echo "RELEASE ME"
+  git config user.name "github-actions"
+  git config user.email "github-actions@example.com"
+  git checkout "${BRANCH}"
+  git add VERSION
+  git commit -m "Version bump to ${VERSION_NEXT}"
+  git pull --no-edit --commit --strategy-option theirs origin ${BRANCH}
+  git push origin ${BRANCH}
 fi
 
 echo "::set-output name=branch::${BRANCH}"

@@ -1,5 +1,5 @@
 FROM alpine:3.10
-RUN apk add --no-cache --upgrade bash
+RUN apk add --no-cache --upgrade bash git
 ADD https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.0.0/src/semver /usr/local/bin/
 RUN chmod 755 /usr/local/bin/semver
 COPY entrypoint.sh /entrypoint.sh
