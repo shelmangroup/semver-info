@@ -10,10 +10,10 @@ inputs:
     default: ""
     required: false
   github_pr_head_sha:
-    default: ${{ github.pull_request.head.sha }}
+    default: ${{ github.event.pull_request.head.sha }}
     required: false
   github_pr_number:
-    default: ${{ github.pull_request.number }}
+    default: ${{ github.event.pull_request.number }}
     required: false
 outputs:
   branch:
@@ -25,6 +25,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    GITHUB_PR_HEAD_SHA: ${{ inputs.github_pr_head_sha }}
-    GITHUB_PR_NUMBER: ${{ inputs.github_pr_number }}
